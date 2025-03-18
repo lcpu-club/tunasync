@@ -22,7 +22,6 @@ type ServerConfig struct {
 
 // A FileConfig contains paths to special files
 type FileConfig struct {
-	StatusFile string `toml:"status_file"`
 	DBFile     string `toml:"db_file"`
 	DBType     string `toml:"db_type"`
 	// used to connect to worker
@@ -36,7 +35,6 @@ func LoadConfig(cfgFile string, c *cli.Context) (*Config, error) {
 	cfg.Server.Addr = "127.0.0.1"
 	cfg.Server.Port = 14242
 	cfg.Debug = false
-	cfg.Files.StatusFile = "/var/lib/tunasync/tunasync.json"
 	cfg.Files.DBFile = "/var/lib/tunasync/tunasync.db"
 	cfg.Files.DBType = "bolt"
 
@@ -60,9 +58,6 @@ func LoadConfig(cfgFile string, c *cli.Context) (*Config, error) {
 	if c.String("cert") != "" && c.String("key") != "" {
 		cfg.Server.SSLCert = c.String("cert")
 		cfg.Server.SSLKey = c.String("key")
-	}
-	if c.String("status-file") != "" {
-		cfg.Files.StatusFile = c.String("status-file")
 	}
 	if c.String("db-file") != "" {
 		cfg.Files.DBFile = c.String("db-file")

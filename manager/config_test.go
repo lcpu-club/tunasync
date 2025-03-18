@@ -30,7 +30,6 @@ func TestConfig(t *testing.T) {
 		ShouldEqual(err, nil)
 		ShouldEqual(conf.Server.Addr, "0.0.0.0")
 		ShouldEqual(conf.Server.Port, 5000)
-		ShouldEqual(conf.Files.StatusFile, "/tmp/tunasync.json")
 		ShouldEqual(conf.Files.DBFile, "/var/lib/tunasync/tunasync.db")
 	})
 
@@ -86,7 +85,6 @@ func TestConfig(t *testing.T) {
 					So(err, ShouldEqual, nil)
 					So(conf.Server.Addr, ShouldEqual, "0.0.0.0")
 					So(conf.Server.Port, ShouldEqual, 5000)
-					So(conf.Files.StatusFile, ShouldEqual, "/tmp/tunasync.json")
 					So(conf.Files.DBFile, ShouldEqual, "/var/lib/tunasync/tunasync.db")
 
 				}
@@ -104,7 +102,6 @@ func TestConfig(t *testing.T) {
 					So(conf.Server.Port, ShouldEqual, 5001)
 					So(conf.Server.SSLCert, ShouldEqual, "/ssl.cert")
 					So(conf.Server.SSLKey, ShouldEqual, "/ssl.key")
-					So(conf.Files.StatusFile, ShouldEqual, "/tunasync.json")
 					So(conf.Files.DBFile, ShouldEqual, "/tunasync.db")
 
 				}
@@ -124,7 +121,6 @@ func TestConfig(t *testing.T) {
 					So(conf.Server.Port, ShouldEqual, 5000)
 					So(conf.Server.SSLCert, ShouldEqual, "/ssl.cert")
 					So(conf.Server.SSLKey, ShouldEqual, "/ssl.key")
-					So(conf.Files.StatusFile, ShouldEqual, "/tunasync.json")
 					So(conf.Files.DBFile, ShouldEqual, "/tunasync.db")
 
 				}
