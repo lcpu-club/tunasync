@@ -5,11 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=tunasync
-PermissionsStartOnly=true
-ExecStartPre=/usr/bin/cgcreate -t tunasync -a tunasync -g memory:tunasync
 ExecStart=/home/bin/tunasync worker -c /etc/tunasync/worker.conf --with-systemd
 ExecReload=/bin/kill -SIGHUP $MAINPID
-ExecStopPost=/usr/bin/cgdelete memory:tunasync
+Delegate=yes
 
 [Install]
 WantedBy=multi-user.target
