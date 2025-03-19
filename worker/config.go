@@ -189,6 +189,7 @@ type mirrorConfig struct {
 	RsyncOverride     []string `toml:"rsync_override"`
 	RsyncOverrideOnly bool     `toml:"rsync_override_only"` // only use provided overridden options if true
 	Stage1Profile     string   `toml:"stage1_profile"`
+	Stage1ExtraOptions     []string `toml:"stage1_extra_options"`
 
 	MemoryLimit MemBytes `toml:"memory_limit"`
 

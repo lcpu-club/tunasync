@@ -13,6 +13,7 @@ type twoStageRsyncConfig struct {
 	name                                         string
 	rsyncCmd                                     string
 	stage1Profile                                string
+	stage1ExtraOptions								 []string
 	upstreamURL, username, password, excludeFile string
 	extraOptions                                 []string
 	rsyncNeverTimeout                            bool
@@ -128,6 +129,7 @@ func (p *twoStageRsyncProvider) Options(stage int) ([]string, error) {
 			return nil, errors.New("Invalid Stage 1 Profile")
 		}
 		options = append(options, stage1Profile...)
+		options = append(options, p.stage1ExtraOptions...)
 
 	} else if stage == 2 {
 		options = append(options, p.stage2Options...)

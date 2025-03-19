@@ -169,6 +169,7 @@ func newMirrorProvider(mirror mirrorConfig, cfg *Config) mirrorProvider {
 		rc := twoStageRsyncConfig{
 			name:              mirror.Name,
 			stage1Profile:     mirror.Stage1Profile,
+			stage1ExtraOptions:     mirror.Stage1ExtraOptions,
 			upstreamURL:       mirror.Upstream,
 			rsyncCmd:          mirror.Command,
 			username:          mirror.Username,
