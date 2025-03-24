@@ -426,13 +426,14 @@ func (w *Worker) registerWorker() {
 func (w *Worker) updateStatus(job *mirrorJob, jobMsg jobMessage) {
 	p := job.provider
 	smsg := MirrorStatus{
-		Name:     jobMsg.name,
-		Worker:   w.cfg.Global.Name,
-		IsMaster: p.IsMaster(),
-		Status:   jobMsg.status,
-		Upstream: p.Upstream(),
-		Size:     "unknown",
-		ErrorMsg: jobMsg.msg,
+		Name:        jobMsg.name,
+		Worker:      w.cfg.Global.Name,
+		IsMaster:    p.IsMaster(),
+		Status:      jobMsg.status,
+		Upstream:    p.Upstream(),
+		Size:        "unknown",
+		ErrorMsg:    jobMsg.msg,
+		Description: p.Description(),
 	}
 
 	// Certain Providers (rsync for example) may know the size of mirror,

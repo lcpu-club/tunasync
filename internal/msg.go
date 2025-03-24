@@ -11,6 +11,7 @@ import (
 // a worker has done syncing
 type MirrorStatus struct {
 	Name        string     `json:"name"`
+	Description string     `json:"description"`
 	Worker      string     `json:"worker"`
 	IsMaster    bool       `json:"is_master"`
 	Status      SyncStatus `json:"status"`

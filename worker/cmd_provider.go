@@ -12,6 +12,7 @@ import (
 
 type cmdConfig struct {
 	name                        string
+	description                 string
 	upstreamURL, command        string
 	workingDir, logDir, logFile string
 	interval                    time.Duration
@@ -38,11 +39,12 @@ func newCmdProvider(c cmdConfig) (*cmdProvider, error) {
 	}
 	provider := &cmdProvider{
 		baseProvider: baseProvider{
-			name:     c.name,
-			ctx:      NewContext(),
-			interval: c.interval,
-			retry:    c.retry,
-			timeout:  c.timeout,
+			name:        c.name,
+			description: c.description,
+			ctx:         NewContext(),
+			interval:    c.interval,
+			retry:       c.retry,
+			timeout:     c.timeout,
 		},
 		cmdConfig: c,
 	}

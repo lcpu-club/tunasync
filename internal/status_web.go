@@ -39,6 +39,7 @@ func (t *stampTime) UnmarshalJSON(b []byte) error {
 // WebMirrorStatus is the mirror status to be shown in the web page
 type WebMirrorStatus struct {
 	Name          string     `json:"name"`
+	Description   string     `json:"description"`
 	IsMaster      bool       `json:"is_master"`
 	Status        SyncStatus `json:"status"`
 	LastUpdate    textTime   `json:"last_update"`
@@ -68,5 +69,6 @@ func BuildWebMirrorStatus(m MirrorStatus) WebMirrorStatus {
 		ScheduledTs:   stampTime{m.Scheduled},
 		Upstream:      m.Upstream,
 		Size:          m.Size,
+		Description:   m.Description,
 	}
 }

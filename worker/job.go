@@ -3,10 +3,10 @@ package worker
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
-	"strings"
 
 	"github.com/codeskyblue/go-sh"
 	tunasync "github.com/tuna/tunasync/internal"

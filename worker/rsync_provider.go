@@ -11,6 +11,7 @@ import (
 
 type rsyncConfig struct {
 	name                                         string
+	description                                  string
 	rsyncCmd                                     string
 	upstreamURL, username, password, excludeFile string
 	extraOptions                                 []string
@@ -45,11 +46,12 @@ func newRsyncProvider(c rsyncConfig) (*rsyncProvider, error) {
 	}
 	provider := &rsyncProvider{
 		baseProvider: baseProvider{
-			name:     c.name,
-			ctx:      NewContext(),
-			interval: c.interval,
-			retry:    c.retry,
-			timeout:  c.timeout,
+			name:        c.name,
+			description: c.description,
+			ctx:         NewContext(),
+			interval:    c.interval,
+			retry:       c.retry,
+			timeout:     c.timeout,
 		},
 		rsyncConfig: c,
 	}

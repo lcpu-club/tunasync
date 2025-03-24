@@ -11,9 +11,10 @@ import (
 
 type twoStageRsyncConfig struct {
 	name                                         string
+	description                                  string
 	rsyncCmd                                     string
 	stage1Profile                                string
-	stage1ExtraOptions								 []string
+	stage1ExtraOptions                           []string
 	upstreamURL, username, password, excludeFile string
 	extraOptions                                 []string
 	rsyncNeverTimeout                            bool
@@ -68,11 +69,12 @@ func newTwoStageRsyncProvider(c twoStageRsyncConfig) (*twoStageRsyncProvider, er
 
 	provider := &twoStageRsyncProvider{
 		baseProvider: baseProvider{
-			name:     c.name,
-			ctx:      NewContext(),
-			interval: c.interval,
-			retry:    c.retry,
-			timeout:  c.timeout,
+			name:        c.name,
+			description: c.description,
+			ctx:         NewContext(),
+			interval:    c.interval,
+			retry:       c.retry,
+			timeout:     c.timeout,
 		},
 		twoStageRsyncConfig: c,
 		stage1Options: []string{

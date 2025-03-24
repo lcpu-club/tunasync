@@ -12,12 +12,13 @@ import (
 type baseProvider struct {
 	sync.Mutex
 
-	ctx      *Context
-	name     string
-	interval time.Duration
-	retry    int
-	timeout  time.Duration
-	isMaster bool
+	ctx         *Context
+	name        string
+	description string
+	interval    time.Duration
+	retry       int
+	timeout     time.Duration
+	isMaster    bool
 
 	cmd              *cmdJob
 	logFileFd        *os.File
@@ -33,6 +34,10 @@ type baseProvider struct {
 
 func (p *baseProvider) Name() string {
 	return p.name
+}
+
+func (p *baseProvider) Description() string {
+	return p.description
 }
 
 func (p *baseProvider) EnterContext() *Context {
