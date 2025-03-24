@@ -6,7 +6,9 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"strings"
 
+	"github.com/codeskyblue/go-sh"
 	tunasync "github.com/tuna/tunasync/internal"
 )
 
@@ -224,6 +226,14 @@ func (m *mirrorJob) Run(managerChan chan<- jobMessage, semaphore chan empty) err
 			if syncErr == nil {
 				// syncing success
 				m.size = provider.DataSize()
+
+				isZFS := provider.ZFS()
+				if isZFS != nil {
+					if out, err := sh.Command("zfs", "list", "-H", "-o", "used", provider.WorkingDir()).Output(); err == nil {
+						m.size = strings.TrimSpace(string(out))
+					}
+				}
+
 				managerChan <- jobMessage{tunasync.Success, m.Name(), "", (m.State() == stateReady)}
 				return nil
 			}
